@@ -39,41 +39,6 @@ The system is built using a **tool-augmented LLM agent**:
 
 ---
 
-## Folder Structure
-
-AI_powered_agent/
-
-│
-├── dataset/
-│ └── bpss_agentic_dataset/
-│ ├── evidence/
-│ ├── candidate_pack/
-│ ├── expected_outputs/
-│ ├── policies/
-│ ├── reference/
-│ ├── structured/
-│ └── README.md
-│
-├── loaders/
-│ └── data_loader.py
-│
-├── vector_store/
-│ └── build_index.py
-│
-├── tools/
-│ ├── vector_tool.py
-│ ├── csv_tool.py
-│ ├── policy_tool.py
-│
-├── agent/
-│ └── llm_agent.py
-│
-├── main.py
-├── readme.txt
-└── requirements.txt
-
----
-
 ## Setup Instructions
 
 ### 1. Clone the Repository
