@@ -1,6 +1,6 @@
-# AI-Powered Compliance Agent
+# Compliance Intelligence Agent
 
-An intelligent multi-source AI agent designed to analyze compliance data, detect issues, and provide evidence-based answers by reasoning across structured and unstructured data.
+An agentic AI system that performs multi-source compliance analysis by reasoning over structured (CSV/XLSX) and unstructured (PDF/DOCX) data with evidence-backed outputs.intelligent multi-source AI agent designed to analyze compliance data, detect issues, and provide evidence-based answers by reasoning across structured and unstructured data.
 
 ---
 
@@ -171,3 +171,7 @@ Aakash N
 ---
 
 ## If you found this useful, consider giving it a star!
+
+## License
+
+This project is licensed under the MIT License.
