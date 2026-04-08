@@ -1,4 +1,4 @@
-# 🧠 AI-Powered Compliance Agent
+# AI-Powered Compliance Agent
 
 An intelligent multi-source AI agent designed to analyze compliance data, detect issues, and provide evidence-based answers by reasoning across structured and unstructured data.
 
