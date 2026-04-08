@@ -1,14 +1,5 @@
 # ==========================================
-# 🔹 LOAD ENV (VERY IMPORTANT)
-# ==========================================
-from dotenv import load_dotenv
-import os
-
-load_dotenv()   # ✅ Loads GROQ_API_KEY from .env
-
-
-# ==========================================
-# 🔹 IMPORTS
+# 🔹 IMPORTS (FIXED)
 # ==========================================
 from langchain_groq import ChatGroq
 from langchain_core.tools import tool
@@ -31,23 +22,20 @@ llm = ChatGroq(
 
 
 # ==========================================
-# 🔹 TOOLS (WITH DOCSTRINGS ✅)
+# 🔹 TOOLS
 # ==========================================
 @tool
 def vector_search(query: str) -> str:
-    """Search unstructured documents such as PDFs, DOCX files, and reports using semantic vector search."""
     return json.dumps(search_vector(query), indent=2)
 
 
 @tool
 def csv_search(query: str) -> str:
-    """Search structured CSV data like candidate records, document inventory, and employment history."""
     return json.dumps(search_csv(query), indent=2)
 
 
 @tool
 def bpss_checker(query: str) -> str:
-    """Check BPSS verification status and identify missing or incomplete checks required for closure."""
     return json.dumps(
         check_bpss_status(base_path="dataset/bpss_agentic_dataset/structured"),
         indent=2
@@ -56,13 +44,9 @@ def bpss_checker(query: str) -> str:
 
 @tool
 def policy_checker(query: str) -> str:
-    """Check compliance policies and determine whether a requirement is mandatory, optional, or not required."""
     return json.dumps(check_policy(query), indent=2)
 
 
-# ==========================================
-# 🔹 TOOL LIST
-# ==========================================
 tools = [
     vector_search,
     csv_search,
@@ -72,7 +56,7 @@ tools = [
 
 
 # ==========================================
-# 🔹 SYSTEM PROMPT
+# 🔹 SYSTEM PROMPT (REPLACES PromptTemplate)
 # ==========================================
 system_prompt = """
 You are an enterprise AI agent.
@@ -82,23 +66,21 @@ You are an enterprise AI agent.
 - Always give reasoning
 - Always include evidence
 - If unsure → say "insufficient data"
-
-Be structured, accurate, and evidence-driven.
 """
 
 
 # ==========================================
-# 🔹 CREATE AGENT
+# 🔹 CREATE AGENT (FIXED)
 # ==========================================
 agent = create_agent(
-    model=llm,
+    model=llm,              # ✅ FIXED
     tools=tools,
-    system_prompt=system_prompt
+    system_prompt=system_prompt   # ✅ FIXED
 )
 
 
 # ==========================================
-# 🔹 RUN FUNCTION
+# 🔹 RUN
 # ==========================================
 def run_llm_agent(query):
     try:
@@ -110,7 +92,6 @@ def run_llm_agent(query):
 
         return {
             "status": "success",
-            "query": query,
             "answer": result["messages"][-1].content
         }
 
@@ -119,26 +100,3 @@ def run_llm_agent(query):
             "status": "error",
             "message": str(e)
         }
-
-
-# ==========================================
-# 🔹 TEST RUN
-# ==========================================
-if __name__ == "__main__":
-    api_key = os.getenv("GROQ_API_KEY")
-
-    if not api_key:
-        raise ValueError("❌ GROQ_API_KEY not found. Check your .env file!")
-
-    print("🔑 Loaded API Key:", api_key[:10], "...")  # debug
-
-    while True:
-        q = input("\n🔍 Ask: ")
-
-        if q.lower() == "exit":
-            break
-
-        res = run_llm_agent(q)
-
-        print("\n📢 RESULT:\n")
-        print(json.dumps(res, indent=2))

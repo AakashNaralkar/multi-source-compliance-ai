@@ -82,3 +82,7 @@ unauthenticated requests
 
 👉 Normal when loading embeddings
 👉 Ignore ✅
+
+
+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
+set GROQ_API_KEY=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
