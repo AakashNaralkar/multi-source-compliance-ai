@@ -32,3 +32,13 @@ Multi-source retrieval
 Reasoning + Synthesis
      ↓
 Final Answer + Evidence
+
+Python 3.14.3
+pip 26.0.1 from C:\Users\AAKASH\AppData\Roaming\Python\Python314\site-packages\pip (python 3.14)
+python -m venv ai_venv
+ai_venv\Scripts\activate
+
+pip install numpy pandas scikit-learn
+pip install langchain openai tiktoken
+pip install faiss-cpu
+pip install fastapi uvicorn python-dotenv
