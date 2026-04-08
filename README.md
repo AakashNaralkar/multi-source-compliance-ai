@@ -18,13 +18,13 @@ This project implements an **enterprise-style AI agent** capable of:
 
 ## Key Features
 
-Multi-source data integration (structured + unstructured)  
-Semantic search using FAISS + embeddings  
-Rule-based + LLM-based reasoning  
-Modular tool-based architecture (LangChain)  
-BPSS compliance checking logic  
-Policy interpretation engine  
-Structured, explainable outputs  
+- Multi-source data integration (structured + unstructured)  
+- Semantic search using FAISS + embeddings  
+- Rule-based + LLM-based reasoning  
+- Modular tool-based architecture (LangChain)  
+- BPSS compliance checking logic  
+- Policy interpretation engine  
+- Structured, explainable outputs  
 
 ---
 
@@ -41,16 +41,16 @@ The system is built using a **tool-augmented LLM agent**:
 
 ## Setup Instructions
 
-### 1. Clone the Repository
+###  1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/AI_powered_agent.git
-cd AI_powered_agent
+git clone https://github.com/your-username/multi-source-compliance-ai.git
+cd multi-source-compliance-ai
 ```
 
 ---
 
-### 2. Python Version
+###  2. Python Version
 
 Use:
 
@@ -58,7 +58,7 @@ Python 3.11.9
 
 ---
 
-### 3. Create Virtual Environment
+###  3. Create Virtual Environment
 
 #### Windows (PowerShell)
 
@@ -76,7 +76,7 @@ source ai_venv/bin/activate
 
 ---
 
-### 4. Install Dependencies
+###  4. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -84,25 +84,34 @@ pip install -r requirements.txt
 
 ---
 
-### 5. Set Environment Variables
+###  5. Set Environment Variables
 
 Create a `.env` file in root:
 
+```
 GROQ_API_KEY=your_api_key_here
+```
 
 Do NOT commit `.env` to GitHub
 
 ---
 
-### 6. Build Vector Index
+###  6. Build Vector Index (MANDATORY FIRST STEP)
 
 ```bash
-python vector_store/build_index.py
+python build_index_main.py
 ```
+
+### Why this step is required?
+
+- The system uses **FAISS vector search** for unstructured data
+- FAISS requires a pre-built index (`faiss_index/`)
+- Without this step, the agent will crash because no index exists
+- This step loads all documents and converts them into searchable embeddings
 
 ---
 
-### 7. Run the Agent
+###  7. Run the Agent
 
 ```bash
 python main.py
@@ -122,7 +131,7 @@ python main.py
 ## How It Works
 
 1. User submits a query  
-2. Agent decides which tools to use  
+2. Agent selects appropriate tools  
 3. Tools retrieve data:
    - Vector search → documents  
    - CSV search → structured records  
@@ -131,6 +140,7 @@ python main.py
 4. Agent reasons across results  
 5. Returns structured output:
 
+```
 Analysis:
 ...
 
@@ -139,6 +149,7 @@ Evidence:
 
 Final Answer:
 ...
+```
 
 ---
 
@@ -156,3 +167,7 @@ Final Answer:
 ## Author
 
 Aakash N
+
+---
+
+## If you found this useful, consider giving it a star!

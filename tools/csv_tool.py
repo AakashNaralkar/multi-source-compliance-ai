@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 
+
 def load_all_csvs(folder_path):
     csv_data = {}
 
@@ -13,11 +14,11 @@ def load_all_csvs(folder_path):
                     df = pd.read_csv(file_path)
                     csv_data[file] = df
                     print(f"Loaded: {file} (rows={len(df)})")
-
                 except Exception as e:
                     print(f"Error loading {file}: {e}")
 
     return csv_data
+
 
 def query_csv(csv_data, query):
     query = query.lower()
@@ -25,6 +26,23 @@ def query_csv(csv_data, query):
 
     for name, df in csv_data.items():
         try:
+            if query in name.lower():
+                results.append({
+                    "file": name,
+                    "rows": df.head(10).to_dict(orient="records")
+                })
+                continue
+
+            if any(x in query for x in ["ref", "reffer", "referee"]):
+                if "evidence_type" in df.columns:
+                    matched = df[df["evidence_type"].astype(str).str.lower().str.contains("referee", na=False)]
+                    if not matched.empty:
+                        results.append({
+                            "file": name,
+                            "rows": matched.head(10).to_dict(orient="records")
+                        })
+                        continue
+
             df_str = df.astype(str)
 
             mask = df_str.apply(
@@ -45,8 +63,8 @@ def query_csv(csv_data, query):
 
     return results
 
-def check_bpss_status(base_path="dataset/bpss_agentic_dataset/structured"):
 
+def check_bpss_status(base_path="dataset/bpss_agentic_dataset/structured"):
     print("Running BPSS status analysis...")
 
     csv_data = load_all_csvs(base_path)
@@ -57,7 +75,6 @@ def check_bpss_status(base_path="dataset/bpss_agentic_dataset/structured"):
     if tracker is None or docs is None:
         return ["Required CSV files not found"]
 
-    # Normalize columns
     tracker.columns = tracker.columns.str.lower()
     docs.columns = docs.columns.str.lower()
 
@@ -66,7 +83,6 @@ def check_bpss_status(base_path="dataset/bpss_agentic_dataset/structured"):
     valid_status = ["clear", "ready to join", "risk accepted"]
 
     for _, row in tracker.iterrows():
-
         candidate_id = str(row.get("candidate_id", "")).strip()
 
         status = ""
@@ -95,7 +111,6 @@ def check_bpss_status(base_path="dataset/bpss_agentic_dataset/structured"):
             missing.append("No documents submitted")
 
         if status not in valid_status or missing:
-
             reason = []
 
             if missing:
@@ -117,7 +132,6 @@ def check_bpss_status(base_path="dataset/bpss_agentic_dataset/structured"):
 
 
 def search_csv(query, base_path="dataset/bpss_agentic_dataset/structured"):
-
     print("Searching structured data...")
 
     csv_data = load_all_csvs(base_path)
