@@ -1,144 +1,20 @@
-# ==========================================
-# 🔹 LOAD ENV (VERY IMPORTANT)
-# ==========================================
-from dotenv import load_dotenv
 import os
-
-load_dotenv()   # ✅ Loads GROQ_API_KEY from .env
-
-
-# ==========================================
-# 🔹 IMPORTS
-# ==========================================
-from langchain_groq import ChatGroq
-from langchain_core.tools import tool
-from langchain.agents import create_agent
-
-import json
-
-from tools.vector_tool import search_vector
-from tools.csv_tool import search_csv, check_bpss_status
-from tools.policy_tool import check_policy
+from agent.llm_agent import run_llm_agent
 
 
-# ==========================================
-# 🔹 LLM SETUP
-# ==========================================
-llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    temperature=0
-)
-
-
-# ==========================================
-# 🔹 TOOLS (WITH DOCSTRINGS ✅)
-# ==========================================
-@tool
-def vector_search(query: str) -> str:
-    """Search unstructured documents such as PDFs, DOCX files, and reports using semantic vector search."""
-    return json.dumps(search_vector(query), indent=2)
-
-
-@tool
-def csv_search(query: str) -> str:
-    """Search structured CSV data like candidate records, document inventory, and employment history."""
-    return json.dumps(search_csv(query), indent=2)
-
-
-@tool
-def bpss_checker(query: str) -> str:
-    """Check BPSS verification status and identify missing or incomplete checks required for closure."""
-    return json.dumps(
-        check_bpss_status(base_path="dataset/bpss_agentic_dataset/structured"),
-        indent=2
-    )
-
-
-@tool
-def policy_checker(query: str) -> str:
-    """Check compliance policies and determine whether a requirement is mandatory, optional, or not required."""
-    return json.dumps(check_policy(query), indent=2)
-
-
-# ==========================================
-# 🔹 TOOL LIST
-# ==========================================
-tools = [
-    vector_search,
-    csv_search,
-    bpss_checker,
-    policy_checker
-]
-
-
-# ==========================================
-# 🔹 SYSTEM PROMPT
-# ==========================================
-system_prompt = """
-You are an enterprise AI agent.
-
-- Use tools when needed
-- You can use multiple tools
-- Always give reasoning
-- Always include evidence
-- If unsure → say "insufficient data"
-
-Be structured, accurate, and evidence-driven.
-"""
-
-
-# ==========================================
-# 🔹 CREATE AGENT
-# ==========================================
-agent = create_agent(
-    model=llm,
-    tools=tools,
-    system_prompt=system_prompt
-)
-
-
-# ==========================================
-# 🔹 RUN FUNCTION
-# ==========================================
-def run_llm_agent(query):
-    try:
-        result = agent.invoke({
-            "messages": [
-                {"role": "user", "content": query}
-            ]
-        })
-
-        return {
-            "status": "success",
-            "query": query,
-            "answer": result["messages"][-1].content
-        }
-
-    except Exception as e:
-        return {
-            "status": "error",
-            "message": str(e)
-        }
-
-
-# ==========================================
-# 🔹 TEST RUN
-# ==========================================
 if __name__ == "__main__":
     api_key = os.getenv("GROQ_API_KEY")
 
     if not api_key:
-        raise ValueError("❌ GROQ_API_KEY not found. Check your .env file!")
-
-    print("🔑 Loaded API Key:", api_key[:10], "...")  # debug
+        raise ValueError("GROQ_API_KEY not found. Check your .env file!")
 
     while True:
-        q = input("\n🔍 Ask: ")
+        q = input("\n Ask: ")
 
         if q.lower() == "exit":
             break
 
-        res = run_llm_agent(q)
+        answer = run_llm_agent(q)
 
-        print("\n📢 RESULT:\n")
-        print(json.dumps(res, indent=2))
+        print("\n RESULT:\n")
+        print(answer)

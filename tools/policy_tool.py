@@ -1,15 +1,11 @@
 from tools.vector_tool import search_vector
 
-
-# ==========================================
-# 🔹 POLICY SEARCH (SPECIALIZED)
-# ==========================================
 def search_policy(query):
     """
     Search only policy-related content
     """
 
-    print("📜 Searching policies...")
+    print("Searching policies...")
 
     results = search_vector(query, k=5)
 
@@ -24,10 +20,6 @@ def search_policy(query):
 
     return policy_results
 
-
-# ==========================================
-# 🔹 POLICY INTERPRETER (CORE LOGIC)
-# ==========================================
 def interpret_policy(query):
     """
     Convert policy text into actionable answer
@@ -43,18 +35,17 @@ def interpret_policy(query):
     for r in results:
         content = r.get("content", "").lower()
 
-        # 🔥 SIMPLE RULE ENGINE (UPGRADE LATER)
         if "must" in content or "mandatory" in content:
-            decision = "✅ Required"
+            decision = "Required"
 
         elif "optional" in content or "may" in content:
-            decision = "⚠️ Optional"
+            decision = "Optional"
 
         elif "not required" in content or "not mandatory" in content:
-            decision = "❌ Not Required"
+            decision = "Not Required"
 
         else:
-            decision = "ℹ️ Check manually"
+            decision = "Check manually"
 
         final_answer.append({
             "decision": decision,
@@ -64,16 +55,12 @@ def interpret_policy(query):
 
     return final_answer
 
-
-# ==========================================
-# 🔹 MAIN FUNCTION (AGENT USE)
-# ==========================================
 def check_policy(query):
     """
     Main entry point for agent
     """
 
-    print("🧠 Running policy check...")
+    print("Running policy check...")
 
     interpreted = interpret_policy(query)
 

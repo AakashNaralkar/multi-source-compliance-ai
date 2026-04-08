@@ -1,15 +1,8 @@
 from vector_store.build_index import load_faiss_index
 
-# ==========================================
-# 🔹 LOAD FAISS INDEX (ONCE)
-# ==========================================
 INDEX_PATH = "faiss_index"
 db = load_faiss_index(INDEX_PATH)
 
-
-# ==========================================
-# 🔹 VECTOR SEARCH TOOL
-# ==========================================
 def search_vector(query, k=3):
     """
     Perform semantic search on FAISS index
