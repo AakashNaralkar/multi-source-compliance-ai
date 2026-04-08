@@ -52,6 +52,7 @@ pip install numpy pandas scikit-learn
 pip install langchain openai tiktoken
 pip install faiss-cpu
 pip install fastapi uvicorn python-dotenv
+pip install sentence-transformers
 
 
 Overall Plan
@@ -61,3 +62,4 @@ Overall Plan
 4. Build tools
 5. Build agent
 6. Add reasoning + output formatting
+
