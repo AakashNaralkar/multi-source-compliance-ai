@@ -43,7 +43,7 @@ Reasoning + Synthesis
      ↓
 Final Answer + Evidence
 
-Python 3.14.3
+Python 3.11.9
 pip 26.0.1 from C:\Users\AAKASH\AppData\Roaming\Python\Python314\site-packages\pip (python 3.14)
 python -m venv ai_venv
 ai_venv\Scripts\activate
@@ -63,3 +63,22 @@ Overall Plan
 5. Build agent
 6. Add reasoning + output formatting
 
+⚠️ WARNINGS (NOT PROBLEMS)
+1️⃣ LangChainDeprecationWarning
+HuggingFaceEmbeddings is deprecated
+
+👉 Safe to ignore for now ✅
+👉 We’ll fix later when building agent
+
+2️⃣ HF Token Warning
+unauthenticated requests
+
+👉 Not an error
+👉 Just slower downloads
+
+(Optional fix later)
+
+3️⃣ BertModel UNEXPECTED
+
+👉 Normal when loading embeddings
+👉 Ignore ✅
