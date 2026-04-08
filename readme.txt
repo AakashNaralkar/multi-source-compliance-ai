@@ -1,3 +1,5 @@
+  Folder Structure
+
     - AI_powered_agent\dataset\bpss_agentic_dataset\evidence
     - AI_powered_agent\dataset\bpss_agentic_dataset\candidate_pack
     - AI_powered_agent\dataset\bpss_agentic_dataset\expected_outputs
@@ -7,6 +9,14 @@
     - AI_powered_agent\dataset\bpss_agentic_dataset\README.md
 
     - AI_powered_agent\readme.txt
+
+    - AI_powered_agent\loaders\data_loader.py
+    - AI_powered_agent\vector_store/build_index.py
+    - AI_powered_agent\tools/vector_tool.py
+    - AI_powered_agent\tools/csv_tool.pytools
+    - AI_powered_agent\tools/policy_tool.py
+    - AI_powered_agent\agent/agent.py
+    - AI_powered_agent\main.py
 
 evidence/ → supporting documents
 candidate_pack/ → entity-specific data
@@ -38,7 +48,16 @@ pip 26.0.1 from C:\Users\AAKASH\AppData\Roaming\Python\Python314\site-packages\p
 python -m venv ai_venv
 ai_venv\Scripts\activate
 
-pip install numpy pandas scikit-learn
+pip install numpy pandas scikit-learn 
 pip install langchain openai tiktoken
 pip install faiss-cpu
 pip install fastapi uvicorn python-dotenv
+
+
+Overall Plan
+1. Load data
+2. Create documents
+3. Build vector store (FAISS)
+4. Build tools
+5. Build agent
+6. Add reasoning + output formatting
