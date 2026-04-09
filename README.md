@@ -2,8 +2,7 @@
 
 An agentic AI system that performs multi-source compliance analysis by reasoning over structured (CSV/XLSX) and unstructured (PDF/DOCX) data with evidence-backed outputs. Intelligent multi-source AI agent designed to analyze compliance data, detect issues, and provide evidence-based answers by reasoning across structured and unstructured data.
 
-## Overview
-
+Overview
 This project implements an **enterprise-style AI agent** capable of:
 
 - Understanding user queries
@@ -106,10 +105,10 @@ python main.py
 1. User submits a query  
 2. Agent selects appropriate tools  
 3. Tools retrieve data:
-   - Vector search → documents  
-   - CSV search → structured records  
-   - BPSS checker → validation logic  
-   - Policy checker → compliance rules  
+   - Vector search documents  
+   - CSV search structured records  
+   - BPSS checker validation logic  
+   - Policy checker compliance rules  
 4. Agent reasons across results  
 5. Returns structured output:
 
