@@ -133,16 +133,6 @@ Final Answer:
 - Pandas  
 - Python 3.11.9  
 
-## Author
-
-Aakash N
-
-## License
-
-This project is licensed under the MIT License.
-
-## If you found this useful, consider giving it a star!
-
 ## Improvements (Future Work)
 
 Guardrails & Validation
@@ -174,3 +164,13 @@ Monitoring & Logging
 
 UI Layer
 - Add Streamlit / Web UI for better usability
+
+## Author
+
+Aakash N
+
+## License
+
+This project is licensed under the MIT License.
+
+## If you found this useful, consider giving it a star!
