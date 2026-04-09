@@ -20,8 +20,6 @@ llm = ChatGroq(
     temperature=0
 )
 
-
-
 # TOOLS
 @tool
 def vector_search(query: str) -> str:
@@ -60,8 +58,6 @@ tools = [
     bpss_checker,
     policy_checker
 ]
-
-
 
 # SYSTEM PROMPT
 system_prompt = """

@@ -2,8 +2,6 @@
 
 An agentic AI system that performs multi-source compliance analysis by reasoning over structured (CSV/XLSX) and unstructured (PDF/DOCX) data with evidence-backed outputs. Intelligent multi-source AI agent designed to analyze compliance data, detect issues, and provide evidence-based answers by reasoning across structured and unstructured data.
 
----
-
 ## Overview
 
 This project implements an **enterprise-style AI agent** capable of:
@@ -13,8 +11,6 @@ This project implements an **enterprise-style AI agent** capable of:
 - Retrieving information from multiple formats (CSV, PDF, DOCX)
 - Performing cross-document reasoning
 - Providing **structured, evidence-backed answers**
-
----
 
 ## Key Features
 
@@ -26,8 +22,6 @@ This project implements an **enterprise-style AI agent** capable of:
 - Policy interpretation engine  
 - Structured, explainable outputs  
 
----
-
 ## Architecture
 
 The system is built using a **tool-augmented LLM agent**:
@@ -36,8 +30,6 @@ The system is built using a **tool-augmented LLM agent**:
 - **Vector Search**: FAISS + HuggingFace embeddings
 - **Structured Data**: Pandas (CSV processing)
 - **Agent Framework**: LangChain
-
----
 
 ## Setup Instructions
 
@@ -48,18 +40,11 @@ git clone https://github.com/your-username/multi-source-compliance-ai.git
 cd multi-source-compliance-ai
 ```
 
----
-
 ###  2. Python Version
 
-Use:
-
-Python 3.11.9
-
----
+Use: Python 3.11.9
 
 ###  3. Create Virtual Environment
-
 #### Windows (PowerShell)
 
 ```bash
@@ -74,15 +59,11 @@ python3 -m venv ai_venv
 source ai_venv/bin/activate
 ```
 
----
-
 ###  4. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
-
----
 
 ###  5. Set Environment Variables
 
@@ -93,8 +74,6 @@ GROQ_API_KEY=your_api_key_here
 ```
 
 Do NOT commit `.env` to GitHub
-
----
 
 ###  6. Build Vector Index (MANDATORY FIRST STEP)
 
@@ -109,15 +88,11 @@ python build_index_main.py
 - Without this step, the agent will crash because no index exists
 - This step loads all documents and converts them into searchable embeddings
 
----
-
 ###  7. Run the Agent
 
 ```bash
 python main.py
 ```
-
----
 
 ## Example Queries
 
@@ -125,8 +100,6 @@ python main.py
 - Which records violate BPSS policies?
 - Identify missing documents for verification
 - Summarize findings from reports and structured data
-
----
 
 ## How It Works
 
@@ -151,8 +124,6 @@ Final Answer:
 ...
 ```
 
----
-
 ## Technologies Used
 
 - LangChain  
@@ -162,16 +133,14 @@ Final Answer:
 - Pandas  
 - Python 3.11.9  
 
----
-
 ## Author
 
 Aakash N
 
----
-
-## If you found this useful, consider giving it a star!
-
 ## License
 
 This project is licensed under the MIT License.
+
+---
+
+## If you found this useful, consider giving it a star!

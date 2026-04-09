@@ -42,7 +42,7 @@ def build_faiss_index(documents, save_path="faiss_index"):
 
 def load_faiss_index(path="faiss_index"):
 
-    print("🔹 Loading FAISS index...")
+    print("Loading FAISS index...")
 
     embeddings = get_embeddings()
 
