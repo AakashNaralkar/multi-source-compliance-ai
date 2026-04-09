@@ -145,32 +145,32 @@ This project is licensed under the MIT License.
 
 ## Improvements (Future Work)
 
-### Guardrails & Validation
-Prevent hallucinations, enforce strict output format, validate tool responses
+Guardrails & Validation
+- Prevent hallucinations, enforce strict output format, validate tool responses
 
-### Hybrid Retrieval
-Combine FAISS (semantic) + keyword search for better accuracy
+Hybrid Retrieval
+- Combine FAISS (semantic) + keyword search for better accuracy
 
-### Better Embeddings
-Upgrade to stronger models (e.g., BGE, E5) for improved search quality
+Better Embeddings
+- Upgrade to stronger models (e.g., BGE, E5) for improved search quality
 
-### LLM-based Policy Reasoning
-Replace keyword rules with LLM for deeper understanding
+LLM-based Policy Reasoning
+- Replace keyword rules with LLM for deeper understanding
 
-### Caching & Performance
-Cache CSV data and optimize query speed
+Caching & Performance
+- Cache CSV data and optimize query speed
 
-### Metadata Filtering
-Filter results by document type (policy, evidence, etc.)
+Metadata Filtering
+- Filter results by document type (policy, evidence, etc.)
 
-### Scalability
-Move from FAISS to Pinecone / Weaviate for production
+Scalability
+- Move from FAISS to Pinecone / Weaviate for production
 
-### API Deployment
 API Deployment
+- Expose system via FastAPI / Flask
 
-### Monitoring & Logging
-Track queries, tool usage, and system performance
+Monitoring & Logging
+- Track queries, tool usage, and system performance
 
-### UI Layer
-Add Streamlit / Web UI for better usability
+UI Layer
+- Add Streamlit / Web UI for better usability
